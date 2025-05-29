@@ -14,12 +14,14 @@ public class UserService {
     private UserDto convertToDTO (User user){
         UserDTO dto = new UserDTO();
         //set e gets
+        dto.setId(user.getId());
         return dto;
     }
 
     private User convertToEntity(UserDTO dto){
         User user = new User();
         //set e gets
+        user.setId(dto.getId());
         return user;
     }
 
