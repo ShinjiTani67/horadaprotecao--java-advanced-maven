@@ -17,8 +17,8 @@ public class StmpConfig {
     @Value("${spring.mail.port}")
     private int port;
 
-    //@Value("${spring.mail.properties.mail.stmp.auth}")
-    //private Boolean auth;
+    @Value("${spring.mail.properties.mail.stmp.auth}")
+    private Boolean auth;
 
     @Bean
     public JavaMailSender getJavaMailSender() {
