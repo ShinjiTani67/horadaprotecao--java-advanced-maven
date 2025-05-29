@@ -1,0 +1,95 @@
+spring:
+  application:
+    name: horadaprotecao
+  profiles:
+    active: dev
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/horadaprotecao
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: user
+    password: password
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rm553587@fiap.com.br
+    password: ${EMAIL_PASSWORD} # use variavel de ambiente
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    check-template-location: true
+    servlet:
+      content-type: text/html
+  http:
+    encoding:
+      charset: UTF-8
+  messages:
+    basename: messages
+    encoding: UTF-8
+  devtools:
+    restart:
+      enabled: true
+  security:
+    oauth2:
+      client:
+        provider:
+          fiap-keycloak:
+            issuer-uri: http://localhost:8080/realms/fiap-keycloak
+        registration:
+          keycloak:
+            provider: fiap-keycloak
+            authorization-grant-type: authorization_code
+            client-id: fiap-keycloak-confidential
+            client-secret: secret
+            scope: openid
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY} # use variavel de ambiente
+      chat:
+        model: gpt-3.5-turbo
+
+server:
+  port: ${SERVER_PORT:8081}
+  error:
+    whitelabel:
+      enabled: true
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    br: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
+  otel:
+    tracing:
+      enabled: true
+
+otel:
+  exporter:
+    jaeger:
+      endpoint: http://localhost:14250
+  resource:
+    attributes:
+      service.name: claimnomore-api
