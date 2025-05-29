@@ -42,11 +42,11 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteById(String uuid){
+    public void deleteById(UUID uuid){
         repository.deleteById(id);
     }
 
-    public UserDTO findById(String uuid){
+    public UserDTO findById(Uuid uuid){
         Optional<User> byUuid = repository.findByUuid(uuid);
         if (byUuid.isPresent())
             return convertToDTO(byUuid.get());{
