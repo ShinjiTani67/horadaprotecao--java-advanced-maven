@@ -1,17 +1,27 @@
 package br.com.fiap.horadaprotecao.entity;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.ToString;
 
 import java.util.UUID;
 
 @Entity
+@Data
+@ToString
+@Table(name="tb_address")
 public class Address {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID uuid;
 
+    @Column(nullable = false, unique = true, length = 8)
     private String cep;
 
+    @Column(nullable = false, unique = true)
     private String rua;
 
+    @Column(nullable = false, unique = true)
     private String bairro;
 }
