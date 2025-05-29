@@ -7,17 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class AddressDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class FloodZoneDTO {
 
     private UUID uuid;
 
-    private String cep;
+    private String nivelRisco;
 
-    private String rua;
-
-    private String bairro;
-
+    private Double raioEmKm;
 }

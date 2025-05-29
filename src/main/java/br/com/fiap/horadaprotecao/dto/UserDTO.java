@@ -14,14 +14,14 @@ import java.util.UUID;
 @Data
 public class UserDTO {
 
-    public UUID uuid;
+    private UUID uuid;
 
-    public String nome;
+    private String nome;
 
-    public String cpf;
+    private String cpf;
 
-    public String telefone;
+    private String telefone;
 
-    public String email;
+    private String email;
 
 }
