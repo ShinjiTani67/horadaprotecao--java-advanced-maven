@@ -13,4 +13,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @Data
 public class UserDTO {
+    public UUID uuid;
+    public String nome;
+    public String cpf;
+    public String telefone;
+    public String email;
 }
