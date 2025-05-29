@@ -28,7 +28,7 @@ public class UserService {
     public UserDTO save(UserDTO userDTO){
         User user = convertToEntity(userDTO);
 
-        if (user.getId() == null || user.getId().isBlank()) {
+        if (user.getUuid() == null || user.getUuid().isBlank()) {
             user.setId(UUID.randomUUID().toString());
         }
 
@@ -42,15 +42,15 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteById(String id){
+    public void deleteById(String uuid){
         repository.deleteById(id);
     }
 
-    public UserDTO findById(String id){
-        Optional<User> byId = repository.findById(id);
-        if (byId.isPresent())
-            return convertToDTO(byId.get());{
+    public UserDTO findById(String uuid){
+        Optional<User> byUuid = repository.findByUuid(uuid);
+        if (byUuid.isPresent())
+            return convertToDTO(byUuid.get());{
         }
-        throw new RuntimeException("Usuario com id" + id + "nao encontrado");
+        throw new RuntimeException("Usuario com id" + uuid + "nao encontrado");
     }
 }
