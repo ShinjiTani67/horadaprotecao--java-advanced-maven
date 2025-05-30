@@ -37,10 +37,10 @@ public class AddressService {
   }
 
   public AddressDTO save(AddressDTO addressdto){
-    Address address = convertToEntity(AddressDTO);
+    Address address = convertToEntity(addressdto);
 
     if (address.getUuid()==null){
-       address.setUuid(UUID.randomUUID().ToString());
+       address.setUuid(UUID.randomUUID());
       }
      address = (Address) repository.save(address);
     return convertToDTO(address);

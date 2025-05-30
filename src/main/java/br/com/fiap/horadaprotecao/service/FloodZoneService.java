@@ -33,20 +33,30 @@ public class FloodZoneService {
     floodzone.setRaioEmKm(dto.getRaioEmKm());
     return floodzone;
   }
-  public FloodZoneDTO save(FloodZoneDTO floodedzonedto){
-    
+  
+  public FloodZoneDTO save(FloodZoneDTO floodzoneDTO) {
+    FloodZone floodzone = convertToEntity(floodzoneDTO);
+
+    if (floodzone.getUuid() == null) {
+      floodzone.setUuid(UUID.randomUUID());
+    }
+
+    floodzone = repository.save(floodzone);
+    return convertToDTO(floodzone);
   }
+
   public List<FloodZoneDTO> getFloodedZone(){
       return repository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
   }
+
   public void deleteById(UUID uuid){
-        repository.deleteUuid(uuid);
+        repository.deleteById(uuid);
     }
 
   public FloodZoneDTO findByUuid(UUID uuid){
-    Optional<FloodZone> byUuid = repository.findbyUuid(uuid);
+    Optional<FloodZone> byUuid = repository.findByUuid(uuid);
     if (byUuid.isPresent())
             return convertToDTO(byUuid.get());{
         }
