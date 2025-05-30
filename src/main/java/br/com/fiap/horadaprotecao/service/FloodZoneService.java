@@ -5,10 +5,11 @@ import br.com.fiap.horadaprotecao.entity.FloodZone;
 import br.com.fiap.horadaprotecao.repository.FloodZoneRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+
 
 @Service
 @AllArgsConstructor
@@ -18,15 +19,18 @@ public class FloodZoneService {
   private FloodZoneDTO convertToDTO (FloodZone floodzone){
     FloodZoneDTO dto = new FloodZoneDTO();
     dto.setUuid(floodzone.getUuid());
-    //get e set
+    dto.setNivelRisco(floodzone.getNivelRisco());
+    dto.setRaioEmKm(floodzone.getRaioEmKm());
     return dto;
   }
 
   private FloodZone convertToEntity(FloodZoneDTO dto){
 
-    FloodZone floodedzone = new FloodZone();
-    floodedzone.setUuid(dto.getUuid());
-    //set e get
+    FloodZone floodzone = new FloodZone();
+    floodzone.setUuid(dto.getUuid());
+    floodzone.setNivelRisco(dto.getNivelRisco());
+    floodzone.setRaioEmKm(dto.getRaioEmKm());
+    return floodzone;
   }
   public FloodZoneDTO save(FloodZoneDTO floodedzonedto){
     
