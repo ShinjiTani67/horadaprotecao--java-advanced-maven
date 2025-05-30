@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import static jakarta.persistence.GenerationType.UUID;
+import java.util.UUID;
 
 
 
@@ -42,7 +42,7 @@ public class UserService {
         User user = convertToEntity(userDTO);
 
         if (user.getUuid() == null ) {
-            user.setUuid();(UUID.randomUUID().toString());
+            user.setUuid(UUID.randomUUID());
         }
         user = (User) repository.save(user);
         return convertToDTO(user);
@@ -58,7 +58,7 @@ public class UserService {
         repository.deleteById(uuid);
     }
 
-    public UserDTO findById(Uuid uuid){
+    public UserDTO findById(UUID uuid){
         Optional<User> byUuid = repository.findByUuid(uuid);
         if (byUuid.isPresent())
             return convertToDTO(byUuid.get());{

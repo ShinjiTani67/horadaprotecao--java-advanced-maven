@@ -39,7 +39,7 @@ public class AddressService {
   public AddressDTO save(AddressDTO addressdto){
     Address address = convertToEntity(AddressDTO);
 
-    if (address.getUuid()==null  address.getUuid().isBlank();){
+    if (address.getUuid()==null){
        address.setUuid(UUID.randomUUID().ToString());
       }
      address = (Address) repository.save(address);
@@ -52,14 +52,14 @@ public class AddressService {
                 .collect(Collectors.toList());
     }
 
-  public void deleteById(String uuid){
+  public void deleteById(UUID uuid){
     repository.deleteById(uuid);
   }
 
-  public AddressDTO findById(String uuid){
-    Optional<Address> byId = repository.findById(uuid);
+  public AddressDTO findById(UUID uuid){
+    Optional<Address> byUuid = repository.findById(uuid);
     if (byUuid.isPresent())
-      return convertToDTO(byId.get());{
+      return convertToDTO(byUuid.get());{
     }
     throw new RuntimeException("Usuario com id" + uuid + "nao encontrado");
   }

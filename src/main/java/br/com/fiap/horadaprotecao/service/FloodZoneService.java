@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -40,11 +41,11 @@ public class FloodZoneService {
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
   }
-  public void deleteById(String uuid){
+  public void deleteById(UUID uuid){
         repository.deleteUuid(uuid);
     }
 
-  public FloodZoneDTO findByUuid(Uuid uuid){
+  public FloodZoneDTO findByUuid(UUID uuid){
     Optional<FloodZone> byUuid = repository.findbyUuid(uuid);
     if (byUuid.isPresent())
             return convertToDTO(byUuid.get());{

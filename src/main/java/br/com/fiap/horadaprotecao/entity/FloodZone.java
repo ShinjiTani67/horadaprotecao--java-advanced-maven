@@ -12,7 +12,7 @@ import java.util.UUID;
 public class FloodZone {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "UUID")
     private UUID uuid;
 
     private String nivelRisco;
