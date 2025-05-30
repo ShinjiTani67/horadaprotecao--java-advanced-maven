@@ -1,6 +1,16 @@
 package br.com.fiap.horadaprotecao.service;
 
+import br.com.fiap.horadaprotecao.dto.UserDTO;
+import br.com.fiap.horadaprotecao.entity.User;
+import br.com.fiap.horadaprotecao.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static jakarta.persistence.GenerationType.UUID;
 
 
 //trocar id por uuid
@@ -9,19 +19,19 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UserService {
-    private final Useepository repository;
+    private final UserRepository repository;
 
-    private UserDto convertToDTO (User user){
+    private UserDTO convertToDTO (User user){
         UserDTO dto = new UserDTO();
         //set e gets
-        dto.setId(user.getId());
+        dto.setUuid(user.getUuid());
         return dto;
     }
 
     private User convertToEntity(UserDTO dto){
         User user = new User();
         //set e gets
-        user.setId(dto.getId());
+        user.setUuid(dto.getUuid());
         return user;
     }
 
@@ -29,7 +39,7 @@ public class UserService {
         User user = convertToEntity(userDTO);
 
         if (user.getUuid() == null || user.getUuid().isBlank()) {
-            user.setId(UUID.randomUUID().toString());
+            user.setUuid();(UUID.randomUUID().toString());
         }
 
         user = (User) repository.save(user);
@@ -43,7 +53,7 @@ public class UserService {
     }
 
     public void deleteById(UUID uuid){
-        repository.deleteById(id);
+        repository.deleteById(uuid);
     }
 
     public UserDTO findById(Uuid uuid){
