@@ -1,27 +1,37 @@
 package br.com.fiap.horadaprotecao.service;
 
+import br.com.fiap.horadaprotecao.dto.FloodZoneDTO;
+import br.com.fiap.horadaprotecao.entity.FloodZone;
+import br.com.fiap.horadaprotecao.repository.FloodZoneRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class FloodZoneService {
-  private final FloodedZoneRepository repository;
+  private final FloodZoneRepository repository;
 
-  private FloodedZoneDTO convertToDTO (FloodedZone floodzone){
-    FloodedZoneDTO dto = new FloodedZoneDTO();
-    dto,setUuid(floodedzone.getUuid());
+  private FloodZoneDTO convertToDTO (FloodZone floodzone){
+    FloodZoneDTO dto = new FloodZoneDTO();
+    dto.setUuid(floodzone.getUuid());
     //get e set
     return dto;
   }
 
-  private FloodedZone convertToEntity(FloodedZoneDTO dto){
+  private FloodZone convertToEntity(FloodZoneDTO dto){
 
-    FloodedZone floodedzone = new FloodedZone();
+    FloodZone floodedzone = new FloodZone();
     floodedzone.setUuid(dto.getUuid());
     //set e get
   }
-  public FloodedZoneDTO save(FloodedZoneDTO floodedzonedto){
+  public FloodZoneDTO save(FloodZoneDTO floodedzonedto){
     
   }
-  public List<FloodedZoneDTO> getFloodedZone(){
+  public List<FloodZoneDTO> getFloodedZone(){
       return repository.findAll().stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());
@@ -30,11 +40,11 @@ public class FloodZoneService {
         repository.deleteUuid(uuid);
     }
 
-  public FloodedZoneDTO findByUuid(Uuid uuid){
-    Optional<FloodedZone> byUuid = repository.findbyUuid(uuid);
+  public FloodZoneDTO findByUuid(Uuid uuid){
+    Optional<FloodZone> byUuid = repository.findbyUuid(uuid);
     if (byUuid.isPresent())
             return convertToDTO(byUuid.get());{
         }
-        throw new RuntimeException("Usuario com id" + id + "nao encontrado");
+        throw new RuntimeException("Usuario com id" + uuid + "nao encontrado");
   }
 }
