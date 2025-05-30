@@ -1,8 +1,12 @@
 package br.com.fiap.horadaprotecao.controller;
 
 import br.com.fiap.horadaprotecao.dto.UserDTO;
+
 import br.com.fiap.horadaprotecao.service.UserService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,52 +15,62 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-
 @RestController
-@RequestMapping("/users")
-@RequiredArgsConstructor
+@RequestMapping("/user")
+@AllArgsConstructor
+@Log
 public class UserController {
 
-    private final UserService userService;
-
-    @PostMapping
-    public ResponseEntity<UserDTO> createUser(@RequestBody UserDTO userDTO) {
-        UserDTO savedUser = userService.save(userDTO);
-        return ResponseEntity.ok(savedUser);
-    }
+    private final UserService service;
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getAllUsers() {
-        List<UserDTO> users = userService.getUser();
-        return ResponseEntity.ok(users);
+    public String listUser(Model model) {
+        var userList = service.getUser();
+        userList.forEach(u -> log.info("ID do usuário: " + u.getUuid()));
+        model.addAttribute("user", userList);
+        return "user";
     }
 
-    @GetMapping("/{uuid}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable UUID uuid) {
-        UserDTO user = userService.findById(uuid);
-        return ResponseEntity.ok(user);
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() {
+        return "Conectado com sucesso";
     }
 
-    @DeleteMapping("/{uuid}")
-    public ResponseEntity<Void> deleteUser(@PathVariable UUID uuid) {
-        userService.deleteById(uuid);
-        return ResponseEntity.noContent().build();
+    @GetMapping("/new")
+    public String newUser(Model model) {
+        model.addAttribute("user", new UserDTO());
+        return "userformulario";
     }
 
     @PostMapping("/save")
-    public String salveUser(
+    public String saveUser(
             @Valid @ModelAttribute("user") UserDTO userDTO,
             BindingResult bindingResult,
             Model model
-    ){
+    ) {
         if (bindingResult.hasErrors()) {
-            log.warning("Erros de validacao ao salvar usuario:");
+            log.warning("Erros de validação ao salvar usuário:");
             bindingResult.getAllErrors().forEach(e -> log.warning(e.toString()));
             model.addAttribute("user", userDTO);
             return "userformulario";
         }
-        log.info("Salvando usuario: " + userDTO);
+
+        log.info("Salvando usuário: " + userDTO);
         service.save(userDTO);
+        return "redirect:/user";
+    }
+
+    @GetMapping("/edit/{uuid}")
+    public String editUser(@PathVariable UUID uuid, Model model) {
+        UserDTO user = service.findById(uuid);
+        model.addAttribute("user", user);
+        return "userformulario";
+    }
+
+    @GetMapping("/delete/{uuid}")
+    public String deleteUser(@PathVariable UUID uuid) {
+        service.deleteById(uuid);
         return "redirect:/user";
     }
 }
