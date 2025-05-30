@@ -41,7 +41,7 @@ public class UserService {
     public UserDTO save(UserDTO userDTO){
         User user = convertToEntity(userDTO);
 
-        if (user.getUuid() == null || user.getUuid().isBlank()) {
+        if (user.getUuid() == null ) {
             user.setUuid();(UUID.randomUUID().toString());
         }
         user = (User) repository.save(user);

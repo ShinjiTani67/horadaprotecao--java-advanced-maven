@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface FloodZoneRepository extends JpaRepository<UUID, FloodZone> {
+public interface FloodZoneRepository extends JpaRepository<FloodZone, UUID> {
 }
