@@ -17,7 +17,7 @@ import java.util.UUID;
 @Data
 public class UserDTO {
 
-    @NotBlank(message = "Nome é obrigatório")
+    @NotBlank(message = "ID é obrigatório")
     private UUID uuid;
 
     @NotBlank(message = "Nome é obrigatório")
