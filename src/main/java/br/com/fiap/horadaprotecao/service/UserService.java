@@ -23,15 +23,22 @@ public class UserService {
 
     private UserDTO convertToDTO (User user){
         UserDTO dto = new UserDTO();
-        //set e gets
         dto.setUuid(user.getUuid());
+        dto.setCpf(user.getCpf());
+        dto.setNome(user.getNome());
+        dto.setEmail(user.getEmail());
+        dto.setTelefone(user.getTelefone());
         return dto;
     }
 
+
     private User convertToEntity(UserDTO dto){
         User user = new User();
-        //set e gets
         user.setUuid(dto.getUuid());
+        user.setCpf(dto.getCpf());
+        user.setEmail(dto.getEmail());
+        user.setNome(dto.getNome());
+        user.setTelefone(dto.getTelefone());
         return user;
     }
 
