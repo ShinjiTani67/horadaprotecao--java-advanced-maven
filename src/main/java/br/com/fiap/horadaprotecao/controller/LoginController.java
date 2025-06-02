@@ -28,13 +28,13 @@ public class LoginController {
         return "login";
     }
 
-    @GetMapping("/register")
+    @GetMapping("/cadastro")
     public String register(Model model) {
         model.addAttribute("user", new UserDTO());
-        return "register";
+        return "cadastro";
     }
 
-    @GetMapping("/home")
+    @GetMapping("/")
     public String home(Model model, Authentication authentication) {
 
         String uuidString = authentication.getName();
