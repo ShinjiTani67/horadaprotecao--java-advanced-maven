@@ -28,7 +28,7 @@ public class UserController {
         var userList = service.getUser();
         userList.forEach(u -> log.info("ID do usuário: " + u.getUuid()));
         model.addAttribute("user", userList);
-        return "user";
+        return "home";
     }
 
     @GetMapping("/test")
@@ -71,6 +71,6 @@ public class UserController {
     @GetMapping("/delete/{uuid}")
     public String deleteUser(@PathVariable UUID uuid) {
         service.deleteById(uuid);
-        return "redirect:/user";
+        return "redirect:home";
     }
 }

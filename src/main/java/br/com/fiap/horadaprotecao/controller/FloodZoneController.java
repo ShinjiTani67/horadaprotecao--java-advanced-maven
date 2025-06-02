@@ -24,7 +24,7 @@ public class FloodZoneController {
         var floodZones = service.getFloodedZone();
         floodZones.forEach(fz -> log.info("ID da zona de alagamento: " + fz.getUuid()));
         model.addAttribute("floodzoneList", floodZones);
-        return "floodzone"; // página HTML com a lista
+        return "floodzone";
     }
 
     @GetMapping("/test")
@@ -36,7 +36,7 @@ public class FloodZoneController {
     @GetMapping("/new")
     public String newFloodZone(Model model) {
         model.addAttribute("floodzone", new FloodZoneDTO());
-        return "floodzoneformulario"; // formulário HTML
+        return "floodzoneformulario";
     }
 
     @PostMapping("/save")
@@ -54,7 +54,7 @@ public class FloodZoneController {
 
         log.info("Salvando zona de alagamento: " + floodZoneDTO);
         service.save(floodZoneDTO);
-        return "redirect:/floodzone";
+        return "redirect:floodzone";
     }
 
     @GetMapping("/edit/{id}")
@@ -67,6 +67,6 @@ public class FloodZoneController {
     @GetMapping("/delete/{id}")
     public String deleteFloodZone(@PathVariable UUID id) {
         service.deleteById(id);
-        return "redirect:/floodzone";
+        return "redirect:floodzone";
     }
 }

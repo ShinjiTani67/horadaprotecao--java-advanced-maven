@@ -30,6 +30,6 @@ public class HomeController {
     @GetMapping("/user/novo")
     public String novoUsuario(Model model) {
         model.addAttribute("user", new User());
-        return "cadastro"; // cadastro.html
+        return "cadastro";
     }
 }
