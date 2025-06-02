@@ -18,6 +18,6 @@ public class CustomErrorController implements ErrorController {
         model.addAttribute("status", statusCode);
         model.addAttribute("message", errorMessage != null ? errorMessage : "Erro inesperado");
 
-        return "error"; // nome do seu HTML
+        return "error";
     }
 }

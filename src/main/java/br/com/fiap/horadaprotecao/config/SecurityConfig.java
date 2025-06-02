@@ -16,15 +16,28 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
+
+                        .requestMatchers("/login", "/register", "/register/**").permitAll()
+
+
                         .requestMatchers("/actuator/health").permitAll()
+
+
                         .requestMatchers("/actuator/**").hasRole("ADMIN")
-                        .requestMatchers("/login","/login/**", "/", "/**", "/home","/home/**").hasAnyRole("ADMIN", "USER")
+
+
+                        .requestMatchers("/home", "/home/**").hasAnyRole("ADMIN", "USER")
+
+
                         .requestMatchers("/vendedor/novo", "/vendedor/salvar", "/vendedor/editar/**", "/vendedor/deletar/**").hasRole("ADMIN")
                         .requestMatchers("/vendedor/**").hasAnyRole("ADMIN", "USER")
+
+                        
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .defaultSuccessUrl("/")
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/home", true)  // Redireciona para /home após login
                         .permitAll()
                 )
                 .logout(logout -> logout
