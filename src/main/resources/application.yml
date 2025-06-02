@@ -17,7 +17,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: rm553587@fiap.com.br
-    password: ${EMAIL_PASSWORD} # use variavel de ambiente
+    password: ${EMAIL_PASSWORD:senha-fake-para-testes} # use variavel de ambiente
     properties:
       mail:
         smtp:
