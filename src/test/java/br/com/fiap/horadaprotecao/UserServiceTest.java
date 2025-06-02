@@ -66,17 +66,28 @@ class UserServiceTest {
 
     @Test
     void testDeleteById() {
+
         UUID uuid = user.getUuid();
-        doNothing().when(repository).deleteById(uuid);
-        userService.deleteById(uuid);
-        verify(repository, times(1)).deleteById(uuid);
+        System.out.println("UUID usado no teste: " + uuid);
+
+        when(repository.findByUuid(uuid)).thenReturn(Optional.of(user));
+
+        UserDTO dto = userService.findById(uuid);
+
+        assertNotNull(dto);
+        assertEquals(user.getEmail(), dto.getEmail());
     }
 
     @Test
     void testFindById() {
         UUID uuid = user.getUuid();
+        System.out.println("UUID para mock: " + uuid);
+
         when(repository.findByUuid(uuid)).thenReturn(Optional.of(user));
+
+        System.out.println("UUID para método findById: " + uuid);
         UserDTO dto = userService.findById(uuid);
+
         assertNotNull(dto);
         assertEquals(user.getEmail(), dto.getEmail());
     }

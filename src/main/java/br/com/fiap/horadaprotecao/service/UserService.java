@@ -44,7 +44,7 @@ public class UserService {
         if (user.getUuid() == null ) {
             user.setUuid(UUID.randomUUID());
         }
-        user = (User) repository.save(user);
+        user = repository.save(user);
         return convertToDTO(user);
     }
 
@@ -61,8 +61,9 @@ public class UserService {
     public UserDTO findById(UUID uuid){
         Optional<User> byUuid = repository.findByUuid(uuid);
         if (byUuid.isPresent())
-            return convertToDTO(byUuid.get());{
-        }
-        throw new RuntimeException("Usuario com id" + uuid + "nao encontrado");
+            return convertToDTO(byUuid.get());
+
+        throw new RuntimeException("Usuario com id " + uuid + " nao encontrado");
     }
+
 }
