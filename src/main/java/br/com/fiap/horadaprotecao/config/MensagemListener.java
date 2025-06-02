@@ -1,6 +1,7 @@
 package br.com.fiap.horadaprotecao.config;
 
 
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 @Component

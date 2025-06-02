@@ -1,10 +1,8 @@
 package br.com.fiap.horadaprotecao.config;
 
-
+import org.springframework.amqp.core.Queue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Queue;
 
 @Configuration
 public class RabbitMQConfig {
@@ -13,6 +11,6 @@ public class RabbitMQConfig {
 
     @Bean
     public Queue queue() {
-        return new Queue(QUEUE_NAME, true);
+        return new Queue(QUEUE_NAME, true); // true = durável
     }
 }
