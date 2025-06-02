@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Controller
 @AllArgsConstructor
-public class AuthController {
+public class LoginController {
 
     private final UserService userService;
     private final AddressService addressService;
@@ -25,13 +25,13 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";  // thymeleaf login.html
+        return "login";
     }
 
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new UserDTO());
-        return "register";  // thymeleaf register.html
+        return "register";
     }
 
     @GetMapping("/home")

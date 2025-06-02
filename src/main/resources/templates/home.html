@@ -1,26 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Home - Verificador de Alagamento</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title>Hora da Proteção - Home</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
 <header>
-    <h1>Bem-vindo ao Verificador de Zonas de Alagamento</h1>
-    <nav>
-        <a th:href="@{/verificar}">Verificar Localização</a>
-        <a th:href="@{/logout}">Sair</a>
-    </nav>
+    <h1>Bem-vindo, <span th:text="${user.name}">Usuário</span>!</h1>
+    <p>Email: <span th:text="${user.email}">email@example.com</span></p>
+    <a href="/logout">Sair</a>
 </header>
 
-<main>
-    <p>Olá, você está autenticado com sucesso.</p>
-    <p>Use o menu acima para verificar se sua região está em área de risco de alagamento.</p>
-</main>
+<section>
+    <h2>Seu Endereço</h2>
+    <p>
+        <span th:text="${address.street}">Rua Exemplo</span>,
+        <span th:text="${address.number}">123</span><br/>
+        Bairro: <span th:text="${address.neighborhood}">Bairro</span><br/>
+        Cidade: <span th:text="${address.city}">Cidade</span><br/>
+        CEP: <span th:text="${address.zipCode}">00000-000</span>
+    </p>
+</section>
 
-<footer>
-    <p>&copy; 2025 - Sistema de Prevenção de Alagamentos</p>
-</footer>
+<section>
+    <h2>Zonas de Risco</h2>
+    <div th:if="${#lists.isEmpty(floodZones)}">
+        <p>Não há zonas de risco cadastradas no momento.</p>
+    </div>
+    <ul th:if="${!#lists.isEmpty(floodZones)}">
+        <li th:each="zone : ${floodZones}">
+            <strong th:text="${zone.name}">Nome da Zona</strong> -
+            <span th:text="${zone.description}">Descrição da zona de risco</span><br/>
+            <em>Área afetada: <span th:text="${zone.area}">Área X</span></em>
+        </li>
+    </ul>
+</section>
+
 </body>
 </html>
