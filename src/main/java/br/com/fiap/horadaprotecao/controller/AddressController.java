@@ -25,7 +25,7 @@ public class AddressController {
         var addresses = service.getAddress();
         addresses.forEach(a -> log.info("ID do endereço: " + a.getUuid()));
         model.addAttribute("addressList", addresses);
-        return "address"; // Nome da página HTML para listar endereços
+        return "address";
     }
 
     @GetMapping("/test")
@@ -37,7 +37,7 @@ public class AddressController {
     @GetMapping("/new")
     public String newAddress(Model model) {
         model.addAttribute("address", new AddressDTO());
-        return "addressformulario"; // Nome da página HTML do formulário
+        return "addressformulario";
     }
 
     @PostMapping("/save")
