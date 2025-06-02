@@ -30,7 +30,6 @@ class UserServiceTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
         UUID uuid = UUID.randomUUID();
         user = new User();
         user.setUuid(uuid);
