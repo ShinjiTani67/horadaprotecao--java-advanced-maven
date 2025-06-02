@@ -52,6 +52,13 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>5.25.0</version>
+		</dependency>
+
 		<!-- Spring AI -->
 		<dependency>
 			<groupId>org.springframework.ai</groupId>

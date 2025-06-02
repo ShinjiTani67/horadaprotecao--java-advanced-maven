@@ -1,5 +1,4 @@
-package fiap.com.br.demo.config;
-
+package br.com.fiap.horadaprotecao.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
