@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${floodzone.uuid != null} ? 'Editar Zona de Alagamento' : 'Nova Zona de Alagamento'">Formulário</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1 th:text="${floodzone.uuid != null} ? 'Editar Zona de Alagamento' : 'Cadastrar Nova Zona de Alagamento'"></h1>
+    <a th:href="@{/floodzone}">← Voltar para Lista</a>
+</header>
+
+<main>
+    <form th:action="@{/floodzone/save}" th:object="${floodzone}" method="post">
+
+        <!-- UUID oculto, necessário para edição -->
+        <input type="hidden" th:field="*{uuid}" />
+
+        <div>
+            <label for="nivelRisco">Nível de Risco:</label>
+            <input type="text" id="nivelRisco" th:field="*{nivelRisco}" required />
+        </div>
+
+        <div>
+            <label for="raioEmKm">Raio (em km):</label>
+            <input type="number" id="raioEmKm" step="0.1" th:field="*{raioEmKm}" required />
+        </div>
+
+        <div>
+            <button type="submit">Salvar</button>
+        </div>
+
+        <div th:if="${#fields.hasErrors()}">
+            <p style="color: red;">Por favor, corrija os erros abaixo:</p>
+            <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+            </ul>
+        </div>
+
+    </form>
+</main>
+
+<footer>
+    <p>&copy; 2025 - Sistema de Prevenção de Alagamentos</p>
+</footer>
+
+</body>
+</html>

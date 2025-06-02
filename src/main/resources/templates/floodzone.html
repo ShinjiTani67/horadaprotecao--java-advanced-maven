@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Zonas de Alagamento</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1>Lista de Zonas de Alagamento</h1>
+    <a th:href="@{/floodzone/new}">Cadastrar Nova Zona</a>
+</header>
+
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nível de Risco</th>
+            <th>Raio (km)</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="floodzone : ${floodzoneList}">
+            <td th:text="${floodzone.uuid}"></td>
+            <td th:text="${floodzone.nivelRisco}"></td>
+            <td th:text="${floodzone.raioEmKm}"></td>
+            <td>
+                <a th:href="@{'/floodzone/edit/' + ${floodzone.uuid}}">Editar</a> |
+                <a th:href="@{'/floodzone/delete/' + ${floodzone.uuid}}"
+                   onclick="return confirm('Tem certeza que deseja excluir?')">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer>
+    <p>&copy; 2025 - Sistema de Prevenção de Alagamentos</p>
+</footer>
+
+</body>
+</html>
