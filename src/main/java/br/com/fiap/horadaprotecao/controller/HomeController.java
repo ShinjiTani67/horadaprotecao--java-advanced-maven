@@ -25,4 +25,10 @@ public class HomeController {
     public String index() {
         return "redirect:home";
     }
+
+    @GetMapping("/user/novo")
+    public String novoUsuario(Model model) {
+        model.addAttribute("user", new User());
+        return "cadastro"; // cadastro.html
+    }
 }
