@@ -40,7 +40,7 @@ public class UserController {
     @GetMapping("/new")
     public String newUser(Model model) {
         model.addAttribute("user", new UserDTO());
-        return "userformulario";
+        return "cadastro";
     }
 
     @PostMapping("/save")
@@ -53,7 +53,7 @@ public class UserController {
             log.warning("Erros de validação ao salvar usuário:");
             bindingResult.getAllErrors().forEach(e -> log.warning(e.toString()));
             model.addAttribute("user", userDTO);
-            return "userformulario";
+            return "user";
         }
 
         log.info("Salvando usuário: " + userDTO);
