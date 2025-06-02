@@ -92,4 +92,4 @@ otel:
       endpoint: http://localhost:14250
   resource:
     attributes:
-      service.name: claimnomore-api
+      service.name: horadaprotecao-api
