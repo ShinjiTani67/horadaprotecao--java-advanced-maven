@@ -55,8 +55,8 @@ public class SecurityConfig {
                         .password(encoder.encode("admin"))
                         .roles("ADMIN")
                         .build(),
-                User.withUsername("usuario")
-                        .password(encoder.encode("usuario"))
+                User.withUsername("fernando@email.com")
+                        .password(encoder.encode("fernando"))
                         .roles("USER")
                         .build()
         );
