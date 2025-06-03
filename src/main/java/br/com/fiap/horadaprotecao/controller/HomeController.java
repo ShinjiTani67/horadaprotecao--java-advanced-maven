@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/home")
+@RequestMapping("/")
 public class HomeController {
 
     @Autowired
@@ -28,11 +28,11 @@ public class HomeController {
     @Autowired
     private FloodZoneRepository floodZoneRepository;
 
-    @GetMapping
+    @GetMapping("/home")
     public String home(Model model, Authentication authentication) {
         if (authentication != null) {
-            UUID uuid = UUID.fromString(authentication.getName());
-            Optional<User> optionalUser = userRepository.findByUuid(uuid);
+            String email = authentication.getName();
+            Optional<User> optionalUser = userRepository.findByEmail(email);
 
             if (optionalUser.isPresent()) {
                 User user = optionalUser.get();
@@ -52,12 +52,8 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "redirect:home";
-    }
 
-    @GetMapping("/user/novo")
+    @GetMapping("/cadastro")
     public String novoUsuario(Model model) {
         model.addAttribute("user", new User());
         return "cadastro";
