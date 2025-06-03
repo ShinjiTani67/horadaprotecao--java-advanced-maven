@@ -37,7 +37,7 @@
 
 		<!-- https://mvnrepository.com/artifact/io.springboot.ai/spring-ai-openai-spring-boot-starter -->
 		<dependency>
-			<groupId>io.springboot.ai</groupId>
+			<groupId>org.springframework.ai</groupId>
 			<artifactId>spring-ai-openai-spring-boot-starter</artifactId>
 		</dependency>
 
@@ -73,7 +73,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
-
 
 		<!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
 		<dependency>
@@ -180,7 +179,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
@@ -236,6 +235,10 @@
 		<repository>
 			<id>spring-milestones</id>
 			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+		</repository>
+		<repository>
+			<id>spring-milestones</id>
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
 	</repositories>
