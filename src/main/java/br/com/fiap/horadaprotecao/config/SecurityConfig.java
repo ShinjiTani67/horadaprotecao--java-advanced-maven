@@ -51,7 +51,7 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder encoder) {
         return new InMemoryUserDetailsManager(
-                User.withUsername("admin")
+                User.withUsername("8e5379d4-daf6-4ed7-a934-72a7f8e31ef1")
                         .password(encoder.encode("admin"))
                         .roles("ADMIN")
                         .build(),
