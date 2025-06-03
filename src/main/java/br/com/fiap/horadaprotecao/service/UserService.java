@@ -10,8 +10,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.UUID;
 
-
-
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -26,7 +24,6 @@ public class UserService {
         dto.setTelefone(user.getTelefone());
         return dto;
     }
-
 
     private User convertToEntity(UserDTO dto){
         User user = new User();
@@ -55,10 +52,13 @@ public class UserService {
     }
 
     public void deleteById(UUID uuid){
+
         repository.deleteById(uuid);
+
     }
 
     public UserDTO findById(UUID uuid){
+
         Optional<User> byUuid = repository.findByUuid(uuid);
         if (byUuid.isPresent())
             return convertToDTO(byUuid.get());

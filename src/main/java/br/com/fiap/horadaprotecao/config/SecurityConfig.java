@@ -62,6 +62,27 @@ public class SecurityConfig {
         );
     }
 
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/login", "/cadastro", "/user/salvar", "/css/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/") // Página de login customizada
+                        .loginProcessingUrl("/login") // Onde o form POST é enviado
+                        .defaultSuccessUrl("/home", true) // Redireciona após login com sucesso
+                        .failureUrl("/?error=true") // Volta para login com erro
+                        .permitAll()
+                )
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/?logout=true")
+                        .permitAll()
+                );
+    }
+
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

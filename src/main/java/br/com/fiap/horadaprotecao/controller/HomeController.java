@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("user/home")
 public class HomeController {
 
     @Autowired
@@ -51,11 +51,5 @@ public class HomeController {
         }
         return "home";
     }
-
-
-    @GetMapping("/cadastro")
-    public String novoUsuario(Model model) {
-        model.addAttribute("user", new User());
-        return "cadastro";
-    }
 }
+

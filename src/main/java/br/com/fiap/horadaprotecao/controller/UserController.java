@@ -43,7 +43,7 @@ public class UserController {
         return "cadastro";
     }
 
-    @PostMapping("/save")
+    @PostMapping("/salvar")
     public String saveUser(
             @Valid @ModelAttribute("user") UserDTO userDTO,
             BindingResult bindingResult,
@@ -58,7 +58,7 @@ public class UserController {
 
         log.info("Salvando usuário: " + userDTO);
         service.save(userDTO);
-        return "redirect:/user";
+        return "redirect:/?cadastro=sucesso";
     }
 
     @GetMapping("/edit/{uuid}")
