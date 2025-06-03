@@ -12,36 +12,28 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-
-                        .requestMatchers("/login", "/register", "/register/**").permitAll()
-
-
+                        .requestMatchers("/", "/login", "/cadastro", "/user/salvar", "/css/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
-
-
                         .requestMatchers("/actuator/**").hasRole("ADMIN")
-
-
                         .requestMatchers("/home", "/home/**").hasAnyRole("ADMIN", "USER")
-
-
                         .requestMatchers("/vendedor/novo", "/vendedor/salvar", "/vendedor/editar/**", "/vendedor/deletar/**").hasRole("ADMIN")
                         .requestMatchers("/vendedor/**").hasAnyRole("ADMIN", "USER")
-
-                        
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .loginPage("/")                          // Página de login customizada
+                        .loginProcessingUrl("/login")           // Onde o formulário POSTa
+                        .defaultSuccessUrl("/home", true)       // Para onde vai após login
+                        .failureUrl("/?error=true")             // Se der erro
                         .permitAll()
                 )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/?logout=true")
                         .permitAll()
                 );
 
@@ -61,27 +53,6 @@ public class SecurityConfig {
                         .build()
         );
     }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/login", "/cadastro", "/user/salvar", "/css/**").permitAll()
-                        .anyRequest().authenticated()
-                )
-                .formLogin(form -> form
-                        .loginPage("/") // Página de login customizada
-                        .loginProcessingUrl("/login") // Onde o form POST é enviado
-                        .defaultSuccessUrl("/home", true) // Redireciona após login com sucesso
-                        .failureUrl("/?error=true") // Volta para login com erro
-                        .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/?logout=true")
-                        .permitAll()
-                );
-    }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
