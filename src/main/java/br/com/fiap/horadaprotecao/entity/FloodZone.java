@@ -19,4 +19,7 @@ public class FloodZone {
 
     private Double raioEmKm;
 
+    @ManyToOne
+    private Address address;
+
 }

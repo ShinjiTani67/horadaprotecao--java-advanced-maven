@@ -28,4 +28,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @OneToOne
+    private Address address;
+
 }

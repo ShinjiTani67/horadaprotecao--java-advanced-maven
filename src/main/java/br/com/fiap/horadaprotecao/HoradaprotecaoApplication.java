@@ -11,8 +11,5 @@ public class HoradaprotecaoApplication {
 		SpringApplication.run(HoradaprotecaoApplication.class, args);
 
 		//rode em: http://localhost:8081
-
-		//fernando@email.com usuario teste
-		//fernando senha
 	}
 }
