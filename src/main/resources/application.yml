@@ -3,42 +3,32 @@ spring:
     name: horadaprotecao
   profiles:
     active: dev
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/horadaprotecao
   datasource:
     url: jdbc:h2:mem:testdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
-
   sql:
     init:
       mode: always
-
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
-
   rabbitmq:
     host: localhost
     port: 5672
     username: user
     password: password
-
   mail:
     host: localhost
     port: 1025
     username: test
     password: test
     properties:
-      mail:
-        smtp:
-          auth: false
-          starttls:
-          enable: false
+      mail.smtp.auth: false
+      mail.smtp.starttls.enable: false
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -78,7 +68,6 @@ spring:
         completions-path: /v1beta/openai/chat/completions
         options:
           model: gemini-2.0-flash
-
 server:
   port: ${SERVER_PORT:8081}
   error:
@@ -88,7 +77,6 @@ server:
     root: INFO
     org.springframework.web: DEBUG
     br: DEBUG
-
 management:
   endpoints:
     web:
@@ -103,7 +91,6 @@ management:
   otel:
     tracing:
       enabled: true
-
 otel:
   exporter:
     jaeger:
