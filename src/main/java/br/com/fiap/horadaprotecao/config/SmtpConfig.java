@@ -10,15 +10,14 @@
     import java.util.Properties;
 
     @Configuration
+        @ConfigurationProperties(prefix = "spring.mail")
+        @Data
     public class SmtpConfig {
 
-        @Value("${spring.mail.host}")
         private String host;
 
-        @Value("${spring.mail.port}")
         private int port;
 
-        @Value("${spring.mail.properties.mail.smtp.auth}")
         private Boolean auth;
 
         @Bean
