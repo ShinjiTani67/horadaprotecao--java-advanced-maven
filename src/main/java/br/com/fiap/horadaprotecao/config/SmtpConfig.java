@@ -1,37 +1,37 @@
-package br.com.fiap.horadaprotecao.config;
+    package br.com.fiap.horadaprotecao.config;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
+    import org.springframework.beans.factory.annotation.Value;
+    import org.springframework.context.annotation.Bean;
+    import org.springframework.context.annotation.ComponentScan;
+    import org.springframework.context.annotation.Configuration;
+    import org.springframework.mail.javamail.JavaMailSender;
+    import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import java.util.Properties;
+    import java.util.Properties;
 
-@Configuration
-public class SmtpConfig {
+    @Configuration
+    public class SmtpConfig {
 
-    @Value("${spring.mail.host}")
-    private String host;
+        @Value("${spring.mail.host}")
+        private String host;
 
-    @Value("${spring.mail.port}")
-    private int port;
+        @Value("${spring.mail.port}")
+        private int port;
 
-    //@Value("${spring.mail.properties.mail.stmp.auth}")
-    //private Boolean auth;
+        @Value("${spring.mail.properties.mail.smtp.auth}")
+        private Boolean auth;
 
-    @Bean
-    public JavaMailSender getJavaMailSender() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        @Bean
+        public JavaMailSender getJavaMailSender() {
+            JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-        mailSender.setHost(host);
-        mailSender.setPort(port);
+            mailSender.setHost(host);
+            mailSender.setPort(port);
 
-        Properties props = mailSender.getJavaMailProperties();
-        props.put("mail.smtp.auth", false);
+            Properties props = mailSender.getJavaMailProperties();
+            props.put("mail.smtp.auth", false);
 
-        return mailSender;
+            return mailSender;
 
+        }
     }
-}

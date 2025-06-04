@@ -27,8 +27,11 @@ spring:
     username: test
     password: test
     properties:
-      mail.smtp.auth: false
-      mail.smtp.starttls.enable: false
+      mail:
+        smtp:
+          auth: false
+          starttls:
+            enable: false
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -68,6 +71,7 @@ spring:
         completions-path: /v1beta/openai/chat/completions
         options:
           model: gemini-2.0-flash
+
 server:
   port: ${SERVER_PORT:8081}
   error:
@@ -77,6 +81,7 @@ server:
     root: INFO
     org.springframework.web: DEBUG
     br: DEBUG
+
 management:
   endpoints:
     web:
@@ -91,6 +96,7 @@ management:
   otel:
     tracing:
       enabled: true
+
 otel:
   exporter:
     jaeger:
