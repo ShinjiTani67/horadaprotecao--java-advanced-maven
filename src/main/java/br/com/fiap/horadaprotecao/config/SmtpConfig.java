@@ -38,7 +38,7 @@
 
             mailSender.setHost(host);
             mailSender.setPort(port);
-            
+
             props.put("mail.smtp.auth", auth != null ? auth.toString() : "false");
 
             return mailSender;
