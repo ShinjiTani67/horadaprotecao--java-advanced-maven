@@ -37,7 +37,7 @@
             mailSender.setPort(port);
 
             Properties props = mailSender.getJavaMailProperties();
-            props.put("mail.smtp.auth", false);
+            props.put("mail.smtp.auth", auth != null ? auth.toString() : "false");
 
             return mailSender;
 
