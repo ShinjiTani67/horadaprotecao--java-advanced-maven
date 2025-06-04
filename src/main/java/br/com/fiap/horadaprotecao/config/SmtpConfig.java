@@ -28,6 +28,11 @@
         public JavaMailSender getJavaMailSender() {
             JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
+            mailSender.setUsername(username);
+            mailSender.setPassword(password);
+            props.put("mail.smtp.auth", auth); // usar o valor da config
+
+
             mailSender.setHost(host);
             mailSender.setPort(port);
 
