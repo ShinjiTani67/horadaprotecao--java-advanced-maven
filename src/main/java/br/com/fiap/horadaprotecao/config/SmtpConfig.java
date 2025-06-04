@@ -20,6 +20,10 @@
 
         private Boolean auth;
 
+        private String username;
+        
+        private String password;
+
         @Bean
         public JavaMailSender getJavaMailSender() {
             JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
