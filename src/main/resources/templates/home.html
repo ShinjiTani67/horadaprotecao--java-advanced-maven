@@ -36,6 +36,29 @@
         </li>
     </ul>
 </section>
+<section>
+    <h2>Ajuda com Enchentes (IA)</h2>
+    <div id="chat-box" style="border: 1px solid #ccc; padding: 10px; max-height: 200px; overflow-y: auto;"></div>
+    <input type="text" id="user-input" placeholder="Digite sua pergunta..." />
+    <button onclick="enviarPergunta()">Enviar</button>
+</section>
+
+<script>
+    function enviarPergunta() {
+        const pergunta = document.getElementById('user-input').value;
+        fetch('/ia/chat', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ message: pergunta })
+        })
+        .then(res => res.json())
+        .then(data => {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `<p><strong>Você:</strong> ${pergunta}</p>`;
+            chatBox.innerHTML += `<p><strong>IA:</strong> ${data.response}</p>`;
+        });
+    }
+</script>
 
 </body>
 </html>
