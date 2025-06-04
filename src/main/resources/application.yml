@@ -29,16 +29,16 @@ spring:
     password: password
 
   mail:
-    host: smtp.gmail.com
-    port: 587
-    username: rm553587@fiap.com.br
-    password: ${EMAIL_PASSWORD:senha-fake-para-testes} # use variavel de ambiente
+    host: localhost
+    port: 1025
+    username: test
+    password: test
     properties:
       mail:
         smtp:
-          auth: true
+          auth: false
           starttls:
-            enable: true
+          enable: false
   thymeleaf:
     cache: false
     prefix: classpath:/templates/
@@ -72,9 +72,12 @@ spring:
             scope: openid
   ai:
     openai:
-      api-key: ${OPENAI_API_KEY} # use variavel de ambiente
+      api-key: AIzaSyCuVd8sL5t0LqngH3USa3uP36q8riJF5mU
+      base-url: https://generativelanguage.googleapis.com
       chat:
-        model: gpt-3.5-turbo
+        completions-path: /v1beta/openai/chat/completions
+        options:
+          model: gemini-2.0-flash
 
 server:
   port: ${SERVER_PORT:8081}
