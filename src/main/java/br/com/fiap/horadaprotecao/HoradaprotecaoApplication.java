@@ -11,5 +11,6 @@ public class HoradaprotecaoApplication {
 		SpringApplication.run(HoradaprotecaoApplication.class, args);
 
 		//rode em: http://localhost:8081
+		//rode em terminal:docker compose up
 	}
 }

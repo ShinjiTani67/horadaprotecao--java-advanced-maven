@@ -1,6 +1,8 @@
     package br.com.fiap.horadaprotecao.config;
 
+    import lombok.Data;
     import org.springframework.beans.factory.annotation.Value;
+    import org.springframework.boot.context.properties.ConfigurationProperties;
     import org.springframework.context.annotation.Bean;
     import org.springframework.context.annotation.ComponentScan;
     import org.springframework.context.annotation.Configuration;
@@ -30,7 +32,7 @@
 
             mailSender.setUsername(username);
             mailSender.setPassword(password);
-            props.put("mail.smtp.auth", auth); // usar o valor da config
+            props.put("mail.smtp.auth", auth);
 
 
             mailSender.setHost(host);
