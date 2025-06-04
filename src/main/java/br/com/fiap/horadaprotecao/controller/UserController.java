@@ -54,7 +54,7 @@ public class UserController {
             log.warning("Erros de validação ao salvar usuário:");
             bindingResult.getAllErrors().forEach(e -> log.warning(e.toString()));
             model.addAttribute("user", userDTO);
-            return "user";
+            return "cadastro";
         }
 
         log.info("Salvando usuário: " + userDTO);
