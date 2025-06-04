@@ -14,6 +14,4 @@
 ##Projeto 
 
 ##TODO list
-- criar um EmailService
 - criar Producer e Consumer 
-- criar um RabbitMQTemplate
