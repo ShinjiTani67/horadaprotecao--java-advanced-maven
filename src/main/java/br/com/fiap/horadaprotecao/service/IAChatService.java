@@ -1,4 +1,4 @@
-package br.com.horadaprotecao.service;
+package br.com.fiap.horadaprotecao.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;

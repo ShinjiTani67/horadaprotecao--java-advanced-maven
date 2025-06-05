@@ -1,7 +1,7 @@
 package br.com.fiap.horadaprotecao.controller;
 
 
-import br.com.horadaprotecao.service.IAChatService;
+import br.com.fiap.horadaprotecao.service.IAChatService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
