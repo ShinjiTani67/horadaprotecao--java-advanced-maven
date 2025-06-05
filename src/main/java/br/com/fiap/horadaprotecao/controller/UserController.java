@@ -38,12 +38,12 @@ public class UserController {
     @Autowired
     private FloodZoneRepository floodZoneRepository;
 
-    @GetMapping
+    @GetMapping("/list")
     public String listUser(Model model) {
         var userList = service.getUser();
         userList.forEach(u -> log.info("ID do usuário: " + u.getUuid()));
         model.addAttribute("user", userList);
-        return "home";
+        return "userlist";
     }
 
     @GetMapping("/test")
@@ -86,7 +86,7 @@ public class UserController {
     @GetMapping("/delete/{uuid}")
     public String deleteUser(@PathVariable UUID uuid) {
         service.deleteById(uuid);
-        return "redirect:home";
+        return "redirect:userlist";
     }
 
     @GetMapping
