@@ -26,11 +26,10 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/")                          // Página de login customizada
-                        .loginProcessingUrl("/login")           // Onde o formulário POSTa
-                        .defaultSuccessUrl("/home", true)       // Para onde vai após login
-                        .failureUrl("/?error=true")             // Se der erro
-                        .permitAll()
+                        .loginPage("/")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/?error=true")
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/?logout=true")

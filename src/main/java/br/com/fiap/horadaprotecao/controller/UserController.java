@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 @AllArgsConstructor
 @Log
 public class UserController {

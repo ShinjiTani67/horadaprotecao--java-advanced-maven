@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("user/home")
+@RequestMapping("/home")
 public class HomeController {
 
     @Autowired
@@ -28,7 +28,7 @@ public class HomeController {
     @Autowired
     private FloodZoneRepository floodZoneRepository;
 
-    @GetMapping("/home")
+    @GetMapping
     public String home(Model model, Authentication authentication) {
         if (authentication != null) {
             String email = authentication.getName();
