@@ -1,4 +1,5 @@
-package br.com.horadaprotecao.controller;
+package br.com.fiap.horadaprotecao.controller;
+
 
 import br.com.horadaprotecao.service.IAChatService;
 import org.springframework.http.ResponseEntity;
