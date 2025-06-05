@@ -18,9 +18,9 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
   rabbitmq:
     host: localhost
-    port: 5672
-    username: user
-    password: password
+    port: 5672 #http://localhost:15672
+    username: guest
+    password: guest
   mail:
     host: localhost
     port: 1025
@@ -73,7 +73,7 @@ spring:
           model: gemini-2.0-flash
 
 server:
-  port: ${SERVER_PORT:8080}
+  port: 8081
   error:
     whitelabel:
       enabled: true
