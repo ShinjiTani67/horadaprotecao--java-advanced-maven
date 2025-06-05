@@ -1,47 +1,40 @@
-    package br.com.fiap.horadaprotecao.config;
+package br.com.fiap.horadaprotecao.config;
 
-    import lombok.Data;
-    import org.springframework.beans.factory.annotation.Value;
-    import org.springframework.boot.context.properties.ConfigurationProperties;
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.ComponentScan;
-    import org.springframework.context.annotation.Configuration;
-    import org.springframework.mail.javamail.JavaMailSender;
-    import org.springframework.mail.javamail.JavaMailSenderImpl;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-    import java.util.Properties;
+import java.util.Properties;
 
-    @Configuration
-        @ConfigurationProperties(prefix = "spring.mail")
-        @Data
-    public class SmtpConfig {
+@Configuration
+@ConfigurationProperties(prefix = "spring.mail")
+@Data
+public class SmtpConfig {
 
-        private String host;
+    private String host;
+    private int port;
+    private Boolean auth;
+    private String username;
+    private String password;
 
-        private int port;
-
-        private Boolean auth;
-
-        private String username;
+    @Bean
+    public JavaMailSender getJavaMailSender() {
         
-        private String password;
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-        @Bean
-        public JavaMailSender getJavaMailSender() {
-            JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-            mailSender.setUsername(username);
-            mailSender.setPassword(password);
+        mailSender.setUsername(username);
+        mailSender.setPassword(password);
+        mailSender.setHost(host);
+        mailSender.setPort(port);
 
-            Properties props = mailSender.getJavaMailProperties();
-            props.put("mail.smtp.auth", auth != null ? auth.toString() : "false");
-            props.put("mail.smtp.auth", auth);
+        Properties props = mailSender.getJavaMailProperties();
 
-            mailSender.setHost(host);
-            mailSender.setPort(port);
+        props.put("mail.smtp.auth", auth != null ? auth.toString() : "false");
 
-            props.put("mail.smtp.auth", auth != null ? auth.toString() : "false");
-
-            return mailSender;
-
-        }
+        return mailSender;
     }
+}
