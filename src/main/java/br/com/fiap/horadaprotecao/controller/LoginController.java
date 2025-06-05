@@ -18,12 +18,8 @@ import java.util.UUID;
 
 @Controller
 @AllArgsConstructor
+@RequestMapping("/cadastro")
 public class LoginController {
-
-    @GetMapping("/")
-    public String login() {
-        return "login";
-    }
 
     @GetMapping("/cadastro")
     public String register(Model model) {
