@@ -62,12 +62,11 @@ spring:
     oauth2:
       client:
         registration:
-          keycloak:
-            client-id: horadaprotecao-client
-            client-secret: secret
-            authorization-grant-type: authorization_code
-            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+          google:
             scope: openid, profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            client-name: Google
+            authorization-grant-type: authorization_code
         provider:
           keycloak:
             issuer-uri: http://localhost:8080/realms/horadaprotecao
