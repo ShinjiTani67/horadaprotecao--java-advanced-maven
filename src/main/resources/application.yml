@@ -18,7 +18,7 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
   rabbitmq:
     host: localhost
-    port: 5672 #http://localhost:15672
+    port: 5672 # http://localhost:15672
     username: guest
     password: guest
   mail:
@@ -50,19 +50,6 @@ spring:
   devtools:
     restart:
       enabled: true
-  security:
-    oauth2:
-      client:
-        provider:
-          fiap-keycloak:
-            issuer-uri: http://localhost:8080/realms/fiap-keycloak
-        registration:
-          keycloak:
-            provider: fiap-keycloak
-            authorization-grant-type: authorization_code
-            client-id: fiap-keycloak-confidential
-            client-secret: secret
-            scope: openid
   ai:
     openai:
       api-key: AIzaSyCuVd8sL5t0LqngH3USa3uP36q8riJF5mU
@@ -73,10 +60,10 @@ spring:
           model: gemini-2.0-flash
 
 server:
-  port: 8081
-  error:
-    whitelabel:
-      enabled: true
+  port: 8082
+  #  error:
+  #    whitelabel:
+  #      enabled: true
   level:
     root: INFO
     org.springframework.web: DEBUG
