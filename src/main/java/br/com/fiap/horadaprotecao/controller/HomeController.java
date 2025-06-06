@@ -16,7 +16,7 @@ public class HomeController {
     public String login() {
         return "login";
     }
-    
+
     @GetMapping("/cadastro")
     public String register(Model model) {
         model.addAttribute("user", new UserDTO());
