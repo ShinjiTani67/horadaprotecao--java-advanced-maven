@@ -5,7 +5,7 @@
 - [Integrantes]
 - [Descrição]
 - [Pitch]
-- [Instalação]   
+- [Video]   
 
 ## Integrantes  
 - Carlos Eduardo RM553461
@@ -33,5 +33,7 @@ Porque se prevenir é a melhor proteção.
 
 https://youtu.be/G6Fe5GhZ8vQ
 
-## Instalação
+## Video
+
+https://youtu.be/vVtX2jlwHKQ
 
