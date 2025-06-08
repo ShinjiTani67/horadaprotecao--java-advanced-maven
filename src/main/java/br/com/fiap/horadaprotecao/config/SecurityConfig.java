@@ -11,25 +11,23 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/cadastro", "/css/**", "/user/salvar").permitAll()
-                        .requestMatchers("/actuator/health").permitAll()
-                        .requestMatchers("/actuator/**").hasRole("ADMIN")
-                        .requestMatchers("/home", "/home/**").hasAnyRole("ADMIN", "USER")
-                        .requestMatchers("/vendedor/novo", "/vendedor/salvar", "/vendedor/editar/**", "/vendedor/deletar/**").hasRole("ADMIN")
-                        .requestMatchers("/vendedor/**").hasAnyRole("ADMIN", "USER")
-                        .anyRequest().authenticated()
-                )
-                .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/login") 
-                        .defaultSuccessUrl("/dashboard", false)
-                )
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/?logout=true")
-                        .invalidateHttpSession(true)
-                        .clearAuthentication(true)
-                        .permitAll()
-                );
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/login", "/cadastro", "/css/**", "/user/salvar").permitAll()
+                .requestMatchers("/actuator/health").permitAll()
+                .requestMatchers("/actuator/**").hasRole("ADMIN")
+                .requestMatchers("/dashboard", "/user/**").hasAnyRole("ADMIN", "USER")
+                .anyRequest().authenticated()
+            )
+            .oauth2Login(oauth2 -> oauth2
+                .loginPage("/login") // rota tratada no AuthController
+                .defaultSuccessUrl("/dashboard", true)
+            )
+            .logout(logout -> logout
+                .logoutSuccessUrl("/login?logout=true")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .permitAll()
+            );
 
         return http.build();
     }
