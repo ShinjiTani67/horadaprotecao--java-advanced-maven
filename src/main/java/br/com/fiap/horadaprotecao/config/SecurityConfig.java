@@ -21,8 +21,8 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
-                        .loginPage("/") // se você tiver uma página personalizada
-                        .defaultSuccessUrl("/home", true)
+                        .loginPage("/login") 
+                        .defaultSuccessUrl("/home", false)
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/?logout=true")
