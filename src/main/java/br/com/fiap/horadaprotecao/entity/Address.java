@@ -24,4 +24,7 @@ public class Address {
 
     @Column(nullable = false, unique = true)
     private String bairro;
+
+    @OneToOne(mappedBy = "address")
+    private User user;
 }
