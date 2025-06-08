@@ -27,7 +27,7 @@ public class DashboardController {
         UserDTO user = userService.findByEmail(email);
         model.addAttribute("user", user);
 
-        AddressDTO address = addressService.findByUserEmail(email);
+        AddressDTO address = addressService.findByEmail(email);
         model.addAttribute("address", address);
 
         List<FloodZoneDTO> floodZones = floodZoneService.getFloodedZone();

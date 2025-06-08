@@ -66,4 +66,11 @@ public class UserService {
         throw new RuntimeException("Usuario com id " + uuid + " nao encontrado");
     }
 
+    public UserDTO findByEmail(String email) {
+        Optional<User> user = repository.findByEmail(email);
+        if (user.isPresent())
+            return convertToDTO(user.get());
+        throw new RuntimeException("Usuário com email " + email + " não encontrado");
+    }
+
 }
