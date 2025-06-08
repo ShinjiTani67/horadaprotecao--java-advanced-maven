@@ -67,9 +67,9 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             client-name: Google
             authorization-grant-type: authorization_code
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8080/realms/horadaprotecao
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+
 
 server:
   port: 8082
