@@ -1,4 +1,4 @@
-package br.com.fiap.horadaprotecao.controller;
+1package br.com.fiap.horadaprotecao.controller;
 
 import br.com.fiap.horadaprotecao.dto.AddressDTO;
 import br.com.fiap.horadaprotecao.dto.FloodZoneDTO;
@@ -24,10 +24,10 @@ public class DashboardController {
     @GetMapping("/dashboard")
     public String dashboard(Model model, Authentication authentication) {
         String email = authentication.getName();
-        UserDTO user = userService.findByEmail(email);
+        UserRepository user = userService.findById(string);
         model.addAttribute("user", user);
 
-        AddressDTO address = addressService.findByEmail(email);
+        AddressRepository address = addressService.findById(string);
         model.addAttribute("address", address);
 
         List<FloodZoneDTO> floodZones = floodZoneService.getFloodedZone();
