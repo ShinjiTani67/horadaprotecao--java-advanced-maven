@@ -17,7 +17,6 @@ import java.util.UUID;
 @Data
 public class UserDTO {
 
-    @NotBlank(message = "ID é obrigatório")
     private UUID uuid;
 
     @NotBlank(message = "Nome é obrigatório")
@@ -35,4 +34,6 @@ public class UserDTO {
     @Email(message = "Email inválido")
     private String email;
 
+    @NotBlank(message = "Senha é obrigatória")
+    private String senha;
 }
