@@ -33,6 +33,6 @@ public class DashboardController {
         List<FloodZoneDTO> floodZones = floodZoneService.getFloodedZone();
         model.addAttribute("floodZones", floodZones);
 
-        return "home"; // ou "dashboard.html", se você quiser renomear a view
+        return "dashboard"; // ou "dashboard.html", se você quiser renomear a view
     }
 }
