@@ -65,4 +65,11 @@ public class AddressService {
     throw new RuntimeException("Usuario com id" + uuid + "nao encontrado");
   }
 
+  public AddressDTO findByEmail(String email) {
+    Optional<Address> address = repository.findByUser_Email(email);
+    if (address.isPresent())
+      return convertToDTO(address.get());
+    throw new RuntimeException("Endereço com email de usuário " + email + " não encontrado");
+  }
+
 }
